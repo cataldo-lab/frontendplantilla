@@ -25,6 +25,7 @@ const registerSubmit = async (data) => {
         } else if (response.status === 'Client error') {
             errorData(response.details);
         }
+        
     } catch (error) {
         console.error("Error al registrar un usuario: ", error);
         showErrorAlert('Cancelado', 'Ocurrió un error al registrarse.');
@@ -41,7 +42,7 @@ const patternRut = new RegExp(/^(?:(?:[1-9]\d{0}|[1-2]\d{1})(\.\d{3}){2}|[1-9]\d
 					{
 						label: "Nombre completo",
 						name: "nombreCompleto",
-						placeholder: "Diego Alexis Salazar Jara",
+						placeholder: "Diego Armando Perez",
                         fieldType: 'input',
 						type: "text",
 						required: true,
@@ -50,6 +51,18 @@ const patternRut = new RegExp(/^(?:(?:[1-9]\d{0}|[1-2]\d{1})(\.\d{3}){2}|[1-9]\d
                         pattern: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
 						patternMessage: "Debe contener solo letras y espacios",
 					},
+                    {
+                        label: "Nombre de usuario",
+                        name: "username",
+                        placeholder: "Dinosaurio123",
+                        fieldType: 'input',
+                        type: "text",
+                        required: true,
+                        minLength: 3,
+                        maxLength: 30,
+                        pattern: /^[a-zA-Z0-9._]{3,30}$/,
+                        patternMessage: "Debe contener solo letras, números y guiones bajos",
+                    },
                     {
                         label: "Correo electrónico",
                         name: "email",

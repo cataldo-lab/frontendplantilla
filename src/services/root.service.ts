@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosInstance } from 'axios';
+import axios, { AxiosRequestConfig, AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 import Cookies from 'js-cookie';
 
 // Definimos el tipo para las variables de entorno
@@ -18,15 +18,12 @@ const instance: AxiosInstance = axios.create({
   withCredentials: true,
 });
 
-// Interceptor de solicitud
+// Interceptor de solicitud - Usando InternalAxiosRequestConfig en lugar de AxiosRequestConfig
 instance.interceptors.request.use(
-  (config: AxiosRequestConfig): AxiosRequestConfig => {
+  (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
     const token: string | undefined = Cookies.get('jwt-auth', { path: '/' });
-    if (token) {
-      config.headers = {
-        ...config.headers,
-        Authorization: `Bearer ${token}`,
-      };
+    if (token && config.headers) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
