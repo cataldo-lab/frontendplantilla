@@ -10,8 +10,8 @@ interface UserData {
 }
 
 interface DecodedToken {
-  nombre: string;
-  apellido: string;
+  "nombre completo": string;
+  username: string;
   email: string;
   rut: string;
   rol: string;

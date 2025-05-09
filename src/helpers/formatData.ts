@@ -4,21 +4,20 @@ import { format as formatTempo } from "@formkit/tempo";
 
 // Puedes definir una interfaz para los datos del usuario
 interface User {
-  nombre: string;
-  apellido: string;
-  rol: string;
+  "nombre Completo": string;
+  username: string;
   rut: string;
   email?: string;
   createdAt: string | Date;
-  [key: string]: any; // permite propiedades adicionales dinámicas
+  [key: string]: any; 
 }
 
 export function formatUserData(user: User): User {
   return {
     ...user,
-    nombre: startCase(user.nombre),
-    apellido: startCase(user.apellido),
-    rol: startCase(user.rol),
+    "nombre completo": startCase(user.nombre),
+    username: startCase(user.apellido),
+    email: user.email,
     rut: formatRut(user.rut),
     createdAt: formatTempo(user.createdAt, "DD-MM-YYYY"),
   };
@@ -35,9 +34,8 @@ export function convertirMinusculas(obj: Record<string, any>): Record<string, an
 
 export function formatPostUpdate(user: User): Partial<User> {
   return {
-    nombre: startCase(user.nombre),
-    apellido: startCase(user.apellido),
-    rol: startCase(user.rol),
+    "nombre completo": startCase(user.nombre),
+    username: startCase(user.rol),
     rut: formatRut(user.rut),
     email: user.email,
     createdAt: formatTempo(user.createdAt, "DD-MM-YYYY"),
