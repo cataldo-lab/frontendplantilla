@@ -10,7 +10,8 @@
       "@hooks/*": ["hooks/*"],
       "@assets/*": ["assets/*"],
       "@styles/*": ["styles/*"],
-      "@services/*": ["services/*"]
+      "@services/*": ["services/*"],
+      "@helpers/*": ["helpers/*"]
       
     }
   }
